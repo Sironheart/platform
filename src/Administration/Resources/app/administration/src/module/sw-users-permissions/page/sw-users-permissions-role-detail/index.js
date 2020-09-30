@@ -11,12 +11,14 @@ Component.register('sw-users-permissions-role-detail', {
         'repositoryFactory',
         'privileges',
         'userService',
-        'loginService'
+        'loginService',
+        'acl'
     ],
 
     mixins: [
         Mixin.getByName('notification')
     ],
+
 
     shortcuts: {
         'SYSTEMKEY+S': 'onSave',
@@ -143,7 +145,6 @@ Component.register('sw-users-permissions-role-detail', {
                 })
                 .catch(() => {
                     this.createNotificationError({
-                        title: this.$tc('global.default.error'),
                         message: this.$tc(
                             'global.notification.notificationSaveErrorMessage',
                             0,

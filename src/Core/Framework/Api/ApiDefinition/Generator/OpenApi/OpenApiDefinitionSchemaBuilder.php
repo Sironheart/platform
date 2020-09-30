@@ -88,8 +88,9 @@ class OpenApiDefinitionSchemaBuilder
                 continue;
             }
 
-            if ($field instanceof TranslatedField && $definition->getTranslationDefinition()) {
-                $field = $definition->getTranslationDefinition()->getFields()->get($field->getPropertyName());
+            $translationDefinition = $definition->getTranslationDefinition();
+            if ($field instanceof TranslatedField && $translationDefinition) {
+                $field = $translationDefinition->getFields()->get($field->getPropertyName());
             }
 
             if ($field instanceof JsonField) {
@@ -128,8 +129,9 @@ class OpenApiDefinitionSchemaBuilder
             }
         }
 
-        if ($definition->getTranslationDefinition()) {
-            foreach ($definition->getTranslationDefinition()->getFields() as $field) {
+        $translationDefinition = $definition->getTranslationDefinition();
+        if ($translationDefinition) {
+            foreach ($translationDefinition->getFields() as $field) {
                 if ($field->getPropertyName() === 'translations' || $field->getPropertyName() === 'id') {
                     continue;
                 }

@@ -217,4 +217,6 @@ return [
     Shopware\Core\Content\Product\SalesChannel\Sorting\ProductSortingDefinition::class => 'Product sorting',
     Shopware\Core\Content\Product\SalesChannel\Sorting\ProductSortingTranslationDefinition::class => 'Translations',
     Shopware\Core\System\Currency\Aggregate\CurrencyCountryRounding\CurrencyCountryRoundingDefinition::class => 'Country cash rounding config',
+    Shopware\Core\Framework\Event\EventAction\Aggregate\EventActionRule\EventActionRuleDefinition::class => 'M:N Mapping',
+    Shopware\Core\Framework\Event\EventAction\Aggregate\EventActionSalesChannel\EventActionSalesChannelDefinition::class => 'M:N Mapping',
 ];

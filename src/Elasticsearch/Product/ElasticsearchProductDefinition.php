@@ -109,7 +109,7 @@ class ElasticsearchProductDefinition extends AbstractElasticsearchDefinition
         return $query;
     }
 
-    private function getCurrencyPrice(ProductEntity $entity, CurrencyEntity $currency)
+    private function getCurrencyPrice(ProductEntity $entity, CurrencyEntity $currency): array
     {
         $origin = $entity->getCurrencyPrice($currency->getId());
 

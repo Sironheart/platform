@@ -45,7 +45,7 @@ class AbsolutePriceDefinition extends Struct implements PriceDefinitionInterface
         $this->precision = $precision;
     }
 
-    public static function create(float $price, ?Rule $filter = null)
+    public static function create(float $price, ?Rule $filter = null): self
     {
         return new self($price, 2, $filter);
     }
