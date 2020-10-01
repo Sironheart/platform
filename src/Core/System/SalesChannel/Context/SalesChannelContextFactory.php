@@ -493,9 +493,6 @@ class SalesChannelContextFactory
         return [$current, $this->getParentLanguageId($current), Defaults::LANGUAGE_SYSTEM];
     }
 
-    /**
-     * @return CashRoundingConfig[]
-     */
     private function getCashRounding(CurrencyEntity $currency, ShippingLocation $shippingLocation, Context $context): array
     {
         if (!Feature::isActive('FEATURE_NEXT_6059')) {

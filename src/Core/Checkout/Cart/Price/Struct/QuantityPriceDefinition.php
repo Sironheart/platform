@@ -74,7 +74,7 @@ class QuantityPriceDefinition extends Struct implements PriceDefinitionInterface
         $this->listPrice = $listPrice;
     }
 
-    public static function create(float $price, TaxRuleCollection $taxRules, int $quantity = 1)
+    public static function create(float $price, TaxRuleCollection $taxRules, int $quantity = 1): self
     {
         return new self($price, $taxRules, 2, $quantity, true);
     }

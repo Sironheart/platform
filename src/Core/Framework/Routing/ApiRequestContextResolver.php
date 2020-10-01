@@ -19,6 +19,7 @@ use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\PlatformRequest;
 use Shopware\Core\SalesChannelRequest;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ApiRequestContextResolver implements RequestContextResolverInterface
 {
@@ -294,12 +295,16 @@ class ApiRequestContextResolver implements RequestContextResolverInterface
         return array_unique(array_filter($list));
     }
 
-    private function getCashRounding($currencyId): CashRoundingConfig
+    private function getCashRounding(string $currencyId): CashRoundingConfig
     {
         $rounding = $this->connection->fetchAssoc(
             'SELECT item_rounding, decimal_precision FROM currency WHERE id = :id',
             ['id' => Uuid::fromHexToBytes($currencyId)]
         );
+
+        if (!$rounding) {
+            throw new NotFoundHttpException(sprintf('Currency with id %s not found', $currencyId));
+        }
 
         if (!Feature::isActive('FEATURE_NEXT_6059')) {
             return new CashRoundingConfig((int) $rounding['decimal_precision'], 0.01, true);

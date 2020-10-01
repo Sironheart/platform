@@ -45,7 +45,7 @@ class PercentagePriceDefinition extends Struct implements PriceDefinitionInterfa
         $this->precision = $precision;
     }
 
-    public static function create(float $percentage, ?Rule $filter = null)
+    public static function create(float $percentage, ?Rule $filter = null): self
     {
         return new self($percentage, 2, $filter);
     }
